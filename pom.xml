@@ -41,6 +41,13 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- copied into the this project for now: -->
+        <!-- see: https://github.com/c-128/guilib -->
+        <!-- dependency>
+            <groupId>com.guilib</groupId>
+            <artifactId>guilib</artifactId>
+            <version>1.0</version>
+        </dependency> -->
         <!-- extension support -->
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
