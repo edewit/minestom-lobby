@@ -1,9 +1,11 @@
 package com.github.offby0point5.minestom.server.lobby;
 
+import com.github.offby0point5.minestom.command.CreateCommand;
 import com.github.offby0point5.minestom.command.StopCommand;
 import com.github.offby0point5.minestom.config.Config;
 import net.kyori.adventure.text.Component;
 import net.minestom.server.MinecraftServer;
+import net.minestom.server.command.CommandManager;
 import net.minestom.server.entity.GameMode;
 import net.minestom.server.entity.Player;
 import net.minestom.server.entity.damage.DamageType;
@@ -60,8 +62,8 @@ public class Server {
         // ===================================================
 
         server.start(Config.getServerHost(), Config.getServerPort());
-        @SuppressWarnings("UnstableApiUsage") InetSocketAddress socketAddress =
-                MinecraftServer.getNettyServer().getServerChannel().localAddress();
+        @SuppressWarnings("UnstableApiUsage")
+        InetSocketAddress socketAddress = MinecraftServer.getNettyServer().getServerChannel().localAddress();
         MinecraftServer.LOGGER.info(String.format("Server listens to %s:%d.",
                 socketAddress.getHostName(), socketAddress.getPort()));
     }
@@ -111,7 +113,9 @@ public class Server {
     }
 
     private static void registerCommands() {
-        MinecraftServer.getCommandManager().register(new StopCommand());
+        CommandManager commandManager = MinecraftServer.getCommandManager();
+        commandManager.register(new StopCommand());
+        commandManager.register(new CreateCommand());
     }
 
     private static void registerSchedulers() {
